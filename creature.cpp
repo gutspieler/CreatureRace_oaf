@@ -10,7 +10,7 @@
 #include <string.h>
 #include <iostream>
 
-//Buggy methods
+//Buggy's methods
 void Buggy::Sunny()
 {
 	
@@ -34,7 +34,7 @@ void Buggy::Rainy()
     
     
 }
-//Sponge methods
+//Sponge's methods
 void Sponge::Sunny()
 {
     water=water-4;
@@ -59,7 +59,7 @@ void Sponge::Rainy()
     
     
 }
-//Walker methods
+//Walker's methods
 void Walker::Sunny()
 {
    

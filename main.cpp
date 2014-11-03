@@ -15,12 +15,20 @@ void Winner(std::vector<Creature*> &creatures);
 void Race(std::vector<Creature*> &creatures, std::vector<char> &days);
 
 int main(int argc, const char * argv[]) {
-
-	
-
-    std::ifstream f("input.txt");
+char ch;
+	do{
+        std::string fname;
+        if(argc>1)fname = argv[1];
+        else{
+            std::cout << "File name: ";
+            std::cin >> fname;
+        }
+    
+    
+    std::ifstream f(fname.c_str());
     if (f.fail()) {
         std::cout<<"Wrong input file!"<<std::endl;
+        break;
     }
     
     int n;
@@ -50,38 +58,24 @@ int main(int argc, const char * argv[]) {
         days.push_back(c);  
         f>>c;      
     }
-    //std::cout<<days.size()<<std::endl;
-    //std::cout<<creatures.size()<<std::endl;
-   // for(int i=0; i<days.size(); i++)
-    //{
-    //	std::cout<<days[i];
-    //}
-    Race(creatures, days);
-    //for (int i=0; i<creatures.size(); i++) {
-      //std::cout<<creatures[i]->Name()<<" "<<creatures[i]->Alive()<<" "<<creatures[i]->Headway()<<" "<<creatures[i]->Water()<<std::endl;
-    //}
-//        for(int i=0; i<n; i++)
-//        {
-//            std::cout<<creatures[i]->Name()<<" "<<creatures[i]->Water()<<std::endl;
-//    
-//        }
-//    for(int i=0; i<days.size(); i++)
-//    {
-//        std::cout<<days[i];
-//    
-//    }
+
+    //Write the result
+    Race(creatures, days);   
     
-    	Winner(creatures);
     
     	
-	 
-    for(int i=0; i<n; ++i){
+	 //destruct the elements of the "creatures" vector 
+        for(int i=0; i<n; ++i){
         delete creatures[i];
     }
+    std::cout<<"Rerun? (Y/N) "; std::cin>>ch;
+}while(ch!='n' && ch!='N');
     return 0;
 }
 
-
+    //Race function:
+    //this function simulate the contest of the creatures according to days
+    //inside the function call the Winner() function
 void Race(std::vector<Creature*> &creatures, std::vector<char> &days)
 {
 	for (int j=0; j<creatures.size(); j++)
@@ -104,23 +98,26 @@ void Race(std::vector<Creature*> &creatures, std::vector<char> &days)
             
         }
     }
+    Winner(creatures);
 }
 
+//Winner function:
+//ascertain winner(s), and print the result 
 void Winner(std::vector<Creature*> &creatures)
 {
-    bool l=false;
+    bool l=false; //check survivors
     int max=0;
     for (int i=0;  i<creatures.size(); i++) {
-        if (max<creatures[i]->Headway() && creatures[i]->Alive()) {
+        if (max<=creatures[i]->Headway() && creatures[i]->Alive()) {
             max=creatures[i]->Headway();
             l=true;
         }
     }
-    if(!l)std::cout<<"no survivors!"<<std::endl;
+    if(!l)std::cout<<"no survivors!"<<std::endl; 
     else std::cout<<"Winner(s):"<<std::endl;
     for(int i=0; l && i<creatures.size(); i++)
     {
-    	if(creatures[i]->Headway()==max)
+    	if(creatures[i]->Headway()==max && creatures[i]->Alive())
     	{
     		std::cout<<creatures[i]->Name()<<std::endl;
     	}

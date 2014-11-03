@@ -23,7 +23,7 @@ public:
     int Water()const{return water;}
 
     
-//abstrac methods:
+//abstract methods:
     virtual void Sunny(){}
     virtual void Cloudy(){}
     virtual void Rainy(){}
