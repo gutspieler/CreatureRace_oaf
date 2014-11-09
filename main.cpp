@@ -64,10 +64,7 @@ char ch;
     
     
     	
-	 //destruct the elements of the "creatures" vector 
-        for(int i=0; i<n; ++i){
-        delete creatures[i];
-    }
+	 
     std::cout<<"Rerun? (Y/N) "; std::cin>>ch;
 }while(ch!='n' && ch!='N');
     return 0;
@@ -99,6 +96,10 @@ void Race(std::vector<Creature*> &creatures, std::vector<char> &days)
         }
     }
     Winner(creatures);
+    //destruct the elements of the "creatures" vector 
+        for(int i=0; i<creatures.size(); ++i){
+        delete creatures[i];
+    }
 }
 
 //Winner function:

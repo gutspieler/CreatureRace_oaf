@@ -28,6 +28,23 @@ public:
     virtual void Cloudy(){}
     virtual void Rainy(){}
     virtual ~Creature(){}
+
+//modifying
+    void Modify(const int a, const int b, const int c)
+{
+	if(Alive())
+	{
+
+		
+		if(water+b<a)
+		{
+			water=water+b;
+		}
+		else{water=a;}
+		if(water>0)moved=moved+c;
+		
+	}
+}
     
     
     

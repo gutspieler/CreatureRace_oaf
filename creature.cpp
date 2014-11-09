@@ -10,51 +10,49 @@
 #include <string.h>
 #include <iostream>
 
+
+
+
+
 //Buggy's methods
 void Buggy::Sunny()
 {
-	
-   
-        water=water-1;
-        moved=moved+3;
+	Modify(8,-1,3);   
+    
     
     
 }
 
 void Buggy::Cloudy()
 {
-    moved=moved+1;
+    Modify(8,0,1);
 }
 
 void Buggy::Rainy()
 {
     
-        if(water+3<8) {water=water+3;}
-        else {water=8;}
+        Modify(8,3,0);
     
     
 }
 //Sponge's methods
 void Sponge::Sunny()
 {
-    water=water-4;
+   Modify(20,-4,0);
     
 }
 
 void Sponge::Cloudy()
 {
     
-        water=water-1;
-        moved=moved+1;
+       Modify(20,-1,+1);
     
    
 }
 
 void Sponge::Rainy()
 {
-        if (water+6<20){water=water+6;}
-        else {water=20;}
-        moved=moved+3;
+        Modify(20,6,3);
     
     
     
@@ -63,17 +61,14 @@ void Sponge::Rainy()
 void Walker::Sunny()
 {
    
-        water=water-2;
-        moved=moved+1;
-    
+     Modify(12,-2,1);
     
 }
 
 void Walker::Cloudy()
 {
     
-        water=water-1;
-        moved=moved+2;
+        Modify(12,-1,2);
     
    
     
@@ -82,9 +77,7 @@ void Walker::Cloudy()
 void Walker::Rainy()
 {
     
-        if(water+3<12){water=water+3;}
-        else {water=12;}
-        moved=moved+1;
+       Modify(12,3,1);
     
     
     
